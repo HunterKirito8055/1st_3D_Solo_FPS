@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         if(character_controller.isGrounded)
         {
            // vertical_velocity -= gravity * Time.deltaTime;
-            print("VVGTD " + vertical_velocity);
+          //  print("VVGTD " + vertical_velocity);
             //apply jump as it is on the Ground
             PlayerJump();
         }
