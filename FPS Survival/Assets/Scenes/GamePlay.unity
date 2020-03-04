@@ -675,6 +675,25 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 2141194275736345791}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2017089399 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2141194274045319653, guid: 2faf1b142933a234a87504f08220210e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2141194275736345791}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2017089401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017089399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b6241e3b3315149829ed68fe6ecded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedWeapon: 1
 --- !u!1 &2089037601
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +773,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2141194274045319653, guid: 2faf1b142933a234a87504f08220210e,
+        type: 3}
+      propertyPath: m_Name
+      value: FPWeapons
+      objectReference: {fileID: 0}
     - target: {fileID: 2141194274220490490, guid: 2faf1b142933a234a87504f08220210e,
         type: 3}
       propertyPath: m_LocalPosition.x
