@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController character_controller;
     private Vector3 move_direction;
+
+    
    
     public float move =5f ; //default running speed
 
@@ -16,8 +18,9 @@ public class PlayerMovement : MonoBehaviour
     public float sprint_speed = 7f;
     public float crouch_speed = 2.5f;
 
+    private float target_height;
     private float stand_height = 1.8f;
-    private float crouch_height = 1.2f;
+    private float crouch_height = 1.0f;
 
     [SerializeField]
     private bool is_Crouching;
@@ -30,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     {
         character_controller = GetComponent<CharacterController>();
         Look_Root = transform.GetChild(0);
+        
     }
     
     // Update is called once per frame
@@ -98,22 +102,23 @@ public class PlayerMovement : MonoBehaviour
         {
             if(is_Crouching)    //if crouching is true, then by press C, he needs to stand
             {
-                Look_Root.localPosition = new Vector3(0, stand_height , 0);
-
+                //Look_Root.localPosition = new Vector3(0, stand_height , 0);
+                target_height = stand_height;
                 move = run;
              
                 is_Crouching = false;
             }
             else    //if not crouching by press C, then he needs to Crouch
             {
-                Look_Root.localPosition = new Vector3(0, crouch_height  , 0);
+                //Look_Root.localPosition = new Vector3(0, crouch_height  , 0);
+                target_height = crouch_height;
                 move = crouch_speed;
 
                 is_Crouching = true;
             }
         }
         character_controller.height = Mathf.Lerp(character_controller.height, Look_Root.localPosition.y, 5f * Time.deltaTime);
-        
+        Look_Root.transform.position = Vector3.Lerp(Look_Root.transform.position, new Vector3(Look_Root.transform.position.x,character_controller.transform.position.y + target_height - 0.1f, Look_Root.transform.position.z),5 * Time.deltaTime);
 
     }
 
