@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float target_height;
     private float stand_height = 1.8f;
-    private float crouch_height = 1.0f;
+    private float crouch_height = 1.2f;
 
     [SerializeField]
     private bool is_Crouching;
@@ -158,10 +158,12 @@ public class PlayerMovement : MonoBehaviour
 
                 is_Crouching = true;
             }
+           
         }
-        character_controller.height = Mathf.Lerp(character_controller.height, Look_Root.localPosition.y, 5f * Time.deltaTime);
-        Look_Root.transform.position = Vector3.Lerp(Look_Root.transform.position, new Vector3(Look_Root.transform.position.x,character_controller.transform.position.y + target_height - 0.1f, Look_Root.transform.position.z),5 * Time.deltaTime);
 
+        character_controller.height = Mathf.Lerp(character_controller.height, target_height, 5f * Time.deltaTime);
+        Look_Root.transform.position = Vector3.Lerp(Look_Root.transform.position, new Vector3(Look_Root.transform.position.x,character_controller.transform.position.y + target_height - 0.1f, Look_Root.transform.position.z),5 * Time.deltaTime);
+        // Look_Root.transform.position = Vector3.Lerp(Look_Root.transform.position,new Vector3(Look_Root.transform.position.x,target_height,Look_Root.transform.position.z),5 * Time.deltaTime);
     }
 
 
