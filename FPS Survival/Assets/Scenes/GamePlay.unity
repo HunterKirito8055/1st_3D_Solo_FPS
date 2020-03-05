@@ -3321,6 +3321,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5511353875433650291, guid: d8930035c9bc8c64fac2da9c473923e4,
+        type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5511353875841585317, guid: d8930035c9bc8c64fac2da9c473923e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3425,6 +3430,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511353875841585317, guid: d8930035c9bc8c64fac2da9c473923e4,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511353875841585317, guid: d8930035c9bc8c64fac2da9c473923e4,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511353875841585317, guid: d8930035c9bc8c64fac2da9c473923e4,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511353875841585318, guid: d8930035c9bc8c64fac2da9c473923e4,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5511353875841585336, guid: d8930035c9bc8c64fac2da9c473923e4,
         type: 3}
