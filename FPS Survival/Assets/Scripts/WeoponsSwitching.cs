@@ -18,6 +18,7 @@ public class WeoponsSwitching : MonoBehaviour
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
+
             if (selectedWeapon >= transform.childCount - 1)
                 selectedWeapon = 0;
             else
@@ -76,7 +77,7 @@ public class WeoponsSwitching : MonoBehaviour
     void SelectWeapon()
     {
         int i= 0;
-
+        
         foreach(Transform FPWeapons in transform)
         {
             if(i==selectedWeapon)    

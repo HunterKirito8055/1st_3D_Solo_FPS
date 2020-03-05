@@ -14,7 +14,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform Look_Root;    //Look root has main camera
     public float run = 5f;
-   
+  
+    private float gravity =20f;
+
+    public float jump_force = 10f;
+    private float vertical_velocity;
+
+    //we need to apply theese movements later on in script
+    //optional  scripting
     public float sprint_speed = 7f;
     public float crouch_speed = 2.5f;
 
@@ -25,18 +32,32 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private bool is_Crouching;
 
-    private float gravity =20f;
+    // need to access data from playerfootsteps script
+    private PlayerFoootSteps _playerfootsteps;
 
-    public float jump_force = 10f;
-    private float vertical_velocity;
+    private float sprint_vol = 1f;
+    float crouch_vol = 0.1f;
+    float walk_vol_min = 0.3f, walk_vol_max = 0.6f;
+    //giving step distances
+    float walk_step_dist = 0.4f;
+    float sprint_step_dist = 0.25f;
+    float crouch_step_dist = 0.3f;
     private void Awake()
     {
         character_controller = GetComponent<CharacterController>();
+
         Look_Root = transform.GetChild(0);
-        
+        //getting script component
+        _playerfootsteps = GetComponentInChildren<PlayerFoootSteps>();
+
     }
-    
-    // Update is called once per frame
+
+    private void Start()
+    {
+        _playerfootsteps.volMin = walk_vol_min;
+        _playerfootsteps.volMax = walk_vol_max;
+        _playerfootsteps.step_dist = walk_step_dist;
+    }
     void Update()
     {
         MoveThePlayer();
@@ -60,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
         character_controller.Move(move_direction);   
     }//Movement
+
     void ApplyGravity()
     {
         if(character_controller.isGrounded)
@@ -90,12 +112,23 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftShift) && !is_Crouching)
         {
             move = sprint_speed;
+            _playerfootsteps.step_dist = sprint_step_dist;
+            _playerfootsteps.volMax = sprint_vol;
+            _playerfootsteps.volMin = sprint_vol;
         }
         else if(Input.GetKeyUp(KeyCode.LeftShift) && !is_Crouching)
         {
             move = run;
+
+            _playerfootsteps.step_dist = walk_step_dist;
+            _playerfootsteps.volMin = walk_vol_min;
+            _playerfootsteps.volMax = walk_vol_max;
+            
         }
-    }
+    } //sprinting
+
+
+
     void Crouch()
     {
         if(Input.GetKeyDown(KeyCode.C))
@@ -105,7 +138,12 @@ public class PlayerMovement : MonoBehaviour
                 //Look_Root.localPosition = new Vector3(0, stand_height , 0);
                 target_height = stand_height;
                 move = run;
-             
+
+                //he is standing
+                _playerfootsteps.step_dist = walk_step_dist;
+                _playerfootsteps.volMin = walk_vol_min;
+                _playerfootsteps.volMax = walk_vol_max;
+
                 is_Crouching = false;
             }
             else    //if not crouching by press C, then he needs to Crouch
@@ -113,6 +151,10 @@ public class PlayerMovement : MonoBehaviour
                 //Look_Root.localPosition = new Vector3(0, crouch_height  , 0);
                 target_height = crouch_height;
                 move = crouch_speed;
+
+                _playerfootsteps.step_dist = crouch_step_dist;
+                _playerfootsteps.volMax = crouch_vol;
+                _playerfootsteps.volMin = crouch_vol;
 
                 is_Crouching = true;
             }

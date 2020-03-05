@@ -24,6 +24,7 @@ public class Gun : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeFire)
         {
             nextTimeFire = Time.time + 1f / fireRate;
+           // Debug.Log("nextime" + nextTimeFire);
             Shoot();
         }
     }
@@ -36,7 +37,7 @@ public class Gun : MonoBehaviour
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
             Debug.Log(hit.transform.name);
-
+            
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
