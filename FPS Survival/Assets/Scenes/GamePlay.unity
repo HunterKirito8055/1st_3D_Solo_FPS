@@ -114,12 +114,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 6b7c8dc06326980478e3cd25a3b31c28, type: 2}
---- !u!4 &163973593 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2141194274220490490, guid: 2faf1b142933a234a87504f08220210e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2141194275736345791}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &249180402
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,32 +443,6 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1793705790 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3017558150671517367, guid: 2faf1b142933a234a87504f08220210e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2141194275736345791}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1793705792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1793705790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5481ecb51c8282a408cc86c4b88fa973, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Foot_Clip:
-  - {fileID: 8300000, guid: 2429399f1ca311945a12f37a32c14aed, type: 3}
-  - {fileID: 8300000, guid: f0761d807b3ae1d4598a50357cb58a5e, type: 3}
-  - {fileID: 8300000, guid: f27be18648dcceb46a46397f5c4c2e62, type: 3}
-  - {fileID: 8300000, guid: 3005916a05630f2439d211eaa6faba3d, type: 3}
-  volMax: 0
-  volMin: 0
-  step_dist: 0
 --- !u!1001 &2141194275736345791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -482,10 +450,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 763706967, guid: 2faf1b142933a234a87504f08220210e, type: 3}
-      propertyPath: Look_Root
-      value: 
-      objectReference: {fileID: 163973593}
     - target: {fileID: 763706968, guid: 2faf1b142933a234a87504f08220210e, type: 3}
       propertyPath: health_stats
       value: 
@@ -553,11 +517,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8486409969136419094, guid: 2faf1b142933a234a87504f08220210e,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2faf1b142933a234a87504f08220210e, type: 3}
@@ -868,3 +827,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcb6bd15c35d776468f38628ff8c5b44, type: 3}
+--- !u!1 &6210849523594777047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6038444852697727370, guid: fcb6bd15c35d776468f38628ff8c5b44,
+    type: 3}
+  m_PrefabInstance: {fileID: 6210849523594777046}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6210849523594777048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210849523594777047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3462f7448ef9e84782b89e3fb257f01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walk_Speed: 0.5
+  run_Speed: 4
+  chase_Distance: 7
+  attack_Distance: 1.8
+  chase_After_Attack_Distance: 2
+  patrol_Radius_min: 20
+  patrol_Radius_max: 60
+  patrol_for_now: 15
+  wait_before_attack: 2
