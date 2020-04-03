@@ -14,6 +14,8 @@ public class HealthStat : MonoBehaviour
 
     private bool is_died;
 
+    private PlayerStats playerstats;
+
     private void Awake()
     {
         if (is_enemy)
@@ -25,7 +27,7 @@ public class HealthStat : MonoBehaviour
         }
         if(is_player)
         {
-            //in UI
+            playerstats = GetComponent<PlayerStats>();
         }
 
     }
@@ -35,11 +37,13 @@ public class HealthStat : MonoBehaviour
     {
         if (is_died)
             return;
+
         Health -= damage;
+        print("health " + Health);
         
         if(is_player)
         {
-            //show in UI
+            playerstats.Display_Healthstats(Health);
         }
         if(is_enemy)
         {
@@ -62,12 +66,48 @@ public class HealthStat : MonoBehaviour
     {
         if(is_enemy)
         {
-           
+            GetComponent<Animator>().enabled = false;
+            GetComponent<BoxCollider>().isTrigger = false;
+            GetComponent<Rigidbody>().AddTorque(-transform.forward * 10f);
+
+            enem_move.enabled = false;
+            navAgent.enabled = false;
+            enem_Anim.enabled = false;
+
         }
+        if(is_player)
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.ENEMY_TAG);
+            for(int i=0; i<enemies.Length; i++)
+            {
+                enemies[i].GetComponent<Enemy>().enabled = false;
+            }
+
+            GetComponent<PlayerAttacks>().enabled = false;
+            GetComponent<PlayerMovement>().enabled = false;
+            GetComponent<WeaponManager>().GetSelectedWeapon().gameObject.SetActive(false);
+        }
+
+        if(tag == Tags.PLAYER_TAG)
+        {
+            Invoke("RestartGame", 3f);
+        }
+        else
+        {
+            Invoke("TurnOffGameObject", 3f);
+        }
+
+    }//die
+
+    void RestartGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GamePlay");
     }
 
-
-
+    void TurnOffGameObject()
+    {
+        gameObject.SetActive(false);
+    }
 
 
 

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3319954016514015798}
-  - component: {fileID: 1739658145}
+  - component: {fileID: 1105490442}
   m_Layer: 0
   m_Name: AttackPoint
   m_TagString: Untagged
@@ -25,26 +25,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337082904144659071}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1863, y: -0.0889, z: -0.0489}
+  m_LocalPosition: {x: -0.265, y: -0.091, z: -0.031}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4184070804376772938}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1739658145
+--- !u!114 &1105490442
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337082904144659071}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7c52657877645740913404805561163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
-  radius: 1
+  damage: 5
+  radius: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -2041,7 +2041,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5eb4e4c4d0b3c8f4bb02a762ec01f6b4, type: 3}
   m_Controller: {fileID: 9100000, guid: 2c89fcd6ecb92ce4c8470e748870130f, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -2073,7 +2073,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4184070804376550778}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 1.76, z: 0.21}
@@ -2126,7 +2126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walk_speed: 1
   chase_speed: 4
-  To_chase_Dist: 20
+  To_chase_Dist: 7
   attack_dist: 2
   chase_after_dist: 2
   patrol_radius_min: 20

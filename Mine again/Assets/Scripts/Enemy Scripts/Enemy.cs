@@ -215,11 +215,11 @@ public class Enemy : MonoBehaviour
 
 
 
-    void Turn_on_attackPoint()
+    void Turn_on_EnemattackPoint()
     {
         AttackPoint.SetActive(true);
     }
-    void Turn_off_attackPoint()
+    void Turn_off_EnemattackPoint()
     {
         if (AttackPoint.activeInHierarchy)
         {   

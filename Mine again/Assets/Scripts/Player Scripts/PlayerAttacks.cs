@@ -158,7 +158,7 @@ public class PlayerAttacks : MonoBehaviour
     void BulletFire()
     {
         RaycastHit hit;
-        if(Physics.Raycast(mainCame.transform.position,mainCame.transform.forward,out hit))
+        if(Physics.Raycast(mainCame.transform.position, mainCame.transform.forward,out hit))
         {
             if(hit.transform.tag == Tags.ENEMY_TAG)
             {
@@ -166,7 +166,7 @@ public class PlayerAttacks : MonoBehaviour
             }
             //print("hit tar : " + hit.transform.gameObject.name);
         }
-    }
+    }//bulletfire
 
 
 

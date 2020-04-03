@@ -25,11 +25,18 @@ public class PlayerMovement : MonoBehaviour
     private float sprint_step_dist = 0.25f;
 
 
+    //stats
+    private PlayerStats playerstats;
+
+    private float sprint_stamina = 100f; //bar
+    public float sprint_reduce = 10f;
+
 
     private void Awake()
     {
         character_controller = GetComponent<CharacterController>();
         playerfoot = GetComponentInChildren<PlayerFootSteps>();
+        playerstats = GetComponent<PlayerStats>(); 
     }
 
     private void Start()
@@ -89,16 +96,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Sprint()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        //if stamina,, we sprint
+        if(sprint_stamina >0f)
         {
-            go_speed = sprint_speed;
-            playerfoot.step_dist = sprint_step_dist;
-            //if we sprint we want same max volume
-            playerfoot.vol_min = sprint_vol;
-            playerfoot.vol_max = sprint_vol;
-           
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                go_speed = sprint_speed;
+                playerfoot.step_dist = sprint_step_dist;
+                //if we sprint we want same max volume
+                playerfoot.vol_min = sprint_vol;
+                playerfoot.vol_max = sprint_vol;
+
+
+                //sprintstamina calc
+                sprint_stamina -= Time.deltaTime * sprint_reduce;
+            }
         }
-        else if(Input.GetKeyUp(KeyCode.LeftShift))
+        if(Input.GetKeyUp(KeyCode.LeftShift))
         {
             go_speed = normal_speed;
 
@@ -106,7 +120,41 @@ public class PlayerMovement : MonoBehaviour
             playerfoot.vol_max = normal_vol_max;
             playerfoot.step_dist = normal_step_dist;
         }
-    }
+
+         if(Input.GetKey(KeyCode.LeftShift))//all time holding
+       {
+            sprint_stamina -= Time.deltaTime * sprint_reduce;
+
+            if(sprint_stamina <0f)
+            {
+                sprint_stamina = 0f;//we dont have stamina
+
+                //reset speed to normal if stamina is zero
+                go_speed = normal_speed;
+
+                playerfoot.vol_min = normal_vol_min;
+                playerfoot.vol_max = normal_vol_max;
+                playerfoot.step_dist = normal_step_dist;
+
+            }
+            playerstats.Display_Staminastats(sprint_stamina);//here decreses
+        }
+        else
+        {
+            //stamina increases
+            if(sprint_stamina !=100f)
+            {
+                sprint_stamina += (sprint_reduce / 2f) * Time.deltaTime; //half speed increases
+
+                playerstats.Display_Staminastats(sprint_stamina);//here increases
+
+                if(sprint_stamina>100f)
+                {
+                    sprint_stamina = 100f;//back to full sprint bar
+                }
+            }
+        }
+    }//sprint
 
 
 

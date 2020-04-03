@@ -8,15 +8,17 @@ public class AxeAttack : MonoBehaviour
     public float radius = 1f;// arround axe point
     public LayerMask layerMask;
 
-    Collider[] hits;
+    
     private void Update()
     {
-        hits = Physics.OverlapSphere(transform.position, radius, layerMask);
+        Collider[] hits = Physics.OverlapSphere(transform.position, radius, layerMask);
+       
 
         if(hits.Length>0)
         {
-            print("axe attacked :" + hits[0].gameObject.name);
+            hits[0].gameObject.GetComponent<HealthStat>().ApplyDamage(damage);
             gameObject.SetActive(false);
+
             
         }
     }
