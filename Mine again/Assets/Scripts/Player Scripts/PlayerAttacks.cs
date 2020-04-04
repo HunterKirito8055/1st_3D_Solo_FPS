@@ -183,7 +183,7 @@ public class PlayerAttacks : MonoBehaviour
                 Debug.Log(hit.transform.name);
                 hit.transform.GetComponent<HealthStat>().ApplyDamage(damage);
             }
-            //print("hit tar : " + hit.transform.gameObject.name);
+            print("hit tar : " + hit.transform.gameObject.name);
         }
     }//bulletfire
 
