@@ -36,12 +36,21 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject AttackPoint;
 
+
+    //after enemySound script
+
+    private EnemySounds enemy_sounds;
+
+
     private void Awake()
     {
         enemyAnim = GetComponent<EnemyAnimations>();
         navAgent = GetComponent<NavMeshAgent>();
 
         Target = GameObject.FindWithTag(Tags.PLAYER_TAG).transform;
+
+
+        enemy_sounds = GetComponentInChildren<EnemySounds>();
     }
 
     private void Start()
@@ -139,7 +148,10 @@ public class Enemy : MonoBehaviour
         if(attack_timer >wait_before_attack)
         {
             enemyAnim.Attack();
+
             attack_timer = 0;
+            enemy_sounds.Play_AttackSound();
+
         }
         if (Vector3.Distance(transform.position, Target.position) >
             attack_dist + chase_after_dist)
@@ -181,7 +193,11 @@ public class Enemy : MonoBehaviour
         if(Vector3.Distance(this.transform.position, Target.position)<=To_chase_Dist)
         {
             enemyAnim.Walk(false);
-            _enemystate = EnemyState.CHASE;//after this,.. itchecks in update and Chase funcion is enabled
+
+            //after this,.. itchecks in update and Chase funcion is enabled
+            _enemystate = EnemyState.CHASE;
+
+            enemy_sounds.PlayScream();
         }
 
 

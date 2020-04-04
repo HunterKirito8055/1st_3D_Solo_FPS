@@ -5,13 +5,12 @@ using UnityEngine;
 public class MouseControl : MonoBehaviour
 {
     [SerializeField]
-    Transform  Player, LookRoot;
+    Transform  Player=default, LookRoot = default;
 
     [SerializeField]
     bool invert;
 
-    [SerializeField]
-    bool can_unlock = true;
+   
 
     [SerializeField]
     float sensitivity;

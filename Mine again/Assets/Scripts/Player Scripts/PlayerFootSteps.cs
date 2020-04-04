@@ -7,7 +7,7 @@ public class PlayerFootSteps : MonoBehaviour
     private AudioSource footsounds;
 
     [SerializeField]
-    private AudioClip[] footclips;
+    private AudioClip[] footclips = default;
 
     private CharacterController character_controller;
 

@@ -18,6 +18,7 @@ public enum WeaponBulletType
 public class WeaponHandler : MonoBehaviour
 {
     private Animator anim;
+   
     [SerializeField]
     GameObject MuzzleFlash;
 

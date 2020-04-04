@@ -14,6 +14,8 @@ public class HealthStat : MonoBehaviour
 
     private bool is_died;
 
+    private EnemySounds enemysounds;
+
     private PlayerStats playerstats;
 
     private void Awake()
@@ -23,6 +25,8 @@ public class HealthStat : MonoBehaviour
             enem_Anim = GetComponent<EnemyAnimations>();
             enem_move = GetComponent<Enemy>();
             navAgent = GetComponent<NavMeshAgent>();
+
+            enemysounds = GetComponentInChildren<EnemySounds>();
 
         }
         if(is_player)
@@ -74,6 +78,8 @@ public class HealthStat : MonoBehaviour
             navAgent.enabled = false;
             enem_Anim.enabled = false;
 
+            StartCoroutine(DeadSound());
+
         }
         if(is_player)
         {
@@ -109,7 +115,11 @@ public class HealthStat : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-
+    IEnumerator DeadSound()
+    {
+        yield return new WaitForSeconds(0.3f);
+        enemysounds.Play_DeadSound(); 
+    }
 
 
 }//class

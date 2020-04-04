@@ -30,14 +30,18 @@ public class PlayerAttacks : MonoBehaviour
     private void Awake()
     {
         _weaponManager = GetComponent<WeaponManager>();
+       
         ZoomAnim = GameObject.FindWithTag(Tags.ZOOM_CAMERA).GetComponent<Animator>();
-        Cross = GameObject.FindWithTag(Tags.CROSSHAIR);
+
+        Cross = GameObject.FindGameObjectWithTag(Tags.CROSSHAIR);
+       
         mainCame = Camera.main;
     }
 
     private void Update()
     {
         ZoomInOut();
+
         WeaponShooting();
     }
      void WeaponShooting()
@@ -45,7 +49,8 @@ public class PlayerAttacks : MonoBehaviour
         //assault firing continuosly.
         if (_weaponManager.GetSelectedWeapon()._firetype == WeaponFireType.MULTIPLE)
         {
-            if (Input.GetMouseButton(0) && Time.time > nextBulletTime)
+
+            if (Input.GetMouseButton(0) && Time.time >= nextBulletTime)
             {
                 //assualt rifles fires like 3 bullets a sec. so to calculate. 
                 // time = 100%, then 3 bullets is like 33% time..
@@ -73,6 +78,7 @@ public class PlayerAttacks : MonoBehaviour
                 if(_weaponManager.GetSelectedWeapon()._bullettype == WeaponBulletType.BULLET)
                 {
                     _weaponManager.GetSelectedWeapon().Shoot_Anim();
+                   
                     BulletFire();
                 }
                 else//for arrow and spears.. we get Bool value from zoom in outo nly
@@ -93,9 +99,13 @@ public class PlayerAttacks : MonoBehaviour
                         _weaponManager.GetSelectedWeapon().Shoot_Anim();
                     }
 
+
                 }//we have arrow or spear
+
             }//if inputing mouse button 0
+
         }//else
+
     }//weapon shoot
 
     void ZoomInOut()
@@ -107,12 +117,15 @@ public class PlayerAttacks : MonoBehaviour
             if(Input.GetMouseButtonDown(1))
             {
                 ZoomAnim.Play(AnimationTags.ZOOM_IN_ANIM);
+                
                 //wehn zooming, no crosshair OK..!
-                Cross.SetActive(false);
+                
+               Cross.SetActive(false);
             }
             else if(Input.GetMouseButtonUp(1))
             {
                 ZoomAnim.Play(AnimationTags.ZOOM_OUT_ANIM);
+                
                 Cross.SetActive(true);
             }
         }//for pistal shotgun and rifle
@@ -124,17 +137,21 @@ public class PlayerAttacks : MonoBehaviour
             if(Input.GetMouseButtonDown(1))
             {
                 _weaponManager.GetSelectedWeapon().Aim(true);
+               
                 isAiming = true;
             }
             else if(Input.GetMouseButtonUp(1))
             {
                 _weaponManager.GetSelectedWeapon().Aim(false);
+               
                 isAiming = false;
             }
+
         }//selfaims duhhhhh
 
         /* after this zoominout, we get isAiming bool value and 
          * then the in WeaponShoot the shooting is done there in selfaim shoot */
+    
     }//zoom IN OUT
 
 
@@ -158,10 +175,12 @@ public class PlayerAttacks : MonoBehaviour
     void BulletFire()
     {
         RaycastHit hit;
-        if(Physics.Raycast(mainCame.transform.position, mainCame.transform.forward,out hit))
+
+        if (Physics.Raycast(mainCame.transform.position, mainCame.transform.forward,out hit))
         {
             if(hit.transform.tag == Tags.ENEMY_TAG)
             {
+                Debug.Log(hit.transform.name);
                 hit.transform.GetComponent<HealthStat>().ApplyDamage(damage);
             }
             //print("hit tar : " + hit.transform.gameObject.name);
