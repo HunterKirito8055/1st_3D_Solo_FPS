@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyStats : HealthStat
 {
-    GameController gameController;
+  //  GameController gameController;
 
     
 }
